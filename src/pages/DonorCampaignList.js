@@ -41,12 +41,12 @@ export default function CharityCampaign() {
     if (error) return <div>{error}</div>;
     if (!Array.isArray(data) || data.length === 0) return (
         <div>
-            <h1 className="text-2xl font-bold tracking-tight text-green-800 p-8">
-                Quản lý Chiến Dịch Cứu Trợ <i class='text-green-600 bx bx-universal-access' ></i>
-                <Link to='/auth/charityCampaign/create' className=" ml-5 cursor-pointer inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white rounded-lg bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
-                    Tạo mới chiến dịch</Link>
+            <h1 className="text-2xl font-bold tracking-tight text-red-700 p-8">
+                Chọn Chiến Dịch muốn Đóng Góp  <i class="text-red-600 bx bxs-donate-heart"></i>
             </h1>
-            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 p-8">Phê duyệt tổ chức từ thiện - No data available</div >;
+            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 p-8">
+                - No data available
+            </div >
         </div>
     )
 
@@ -73,16 +73,14 @@ export default function CharityCampaign() {
 
     return (
         <div>
-            <h1 className="text-2xl font-bold tracking-tight text-green-800 p-8">
-                Quản lý Chiến Dịch Cứu Trợ <i class='text-green-600 bx bx-universal-access' ></i>
-                <Link to='/auth/charityCampaign/create' className=" ml-5 cursor-pointer inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white rounded-lg bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
-                    Tạo mới chiến dịch</Link>
+            <h1 className="text-2xl font-bold tracking-tight text-red-700 p-8">
+                Chọn Chiến Dịch muốn Đóng Góp <i class="text-red-600 bx bxs-donate-heart"></i>
             </h1>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-4">
+            <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-1 gap-6 p-4">
                 {data.map((item) => (
-                    <Link to={`/auth/charityCampaign/${item.id}`}
+                    <Link to={`/auth/DonorCampaignDetail/${item.id}`}
                         key={item.id}
-                        className="cursor-pointer relative group mb-8 max-w-full p-6 bg-white border border-gray-200 rounded-lg shadow transition-transform hover:scale-105 dark:bg-gray-800 dark:border-gray-700"
+                        className="cursor-pointer relative group mb-8 max-w-full p-6 bg-white border border-gray-200 rounded-lg shadow  dark:bg-gray-800 dark:border-gray-700 hover:shadow-red-500"
                     >
                         {/* Title Section */}
                         <div className="mb-4">
@@ -95,12 +93,12 @@ export default function CharityCampaign() {
                             </p>
                         </div>
 
+
                         {/* Footer Section */}
                         <div className="mt-4 pt-4 border-t border-gray-200 dark:border-gray-600">
                             <p className="text-lg font-semibold text-gray-900 dark:text-white">
                                 Mục tiêu: {parseFloat(item.goalAmount).toLocaleString()} VNĐ
                             </p>
-
                             <p
                                 className={`text-sm font-medium ${statusStyles[item.status]?.color || "text-gray-500"}`}
                             >
@@ -109,7 +107,7 @@ export default function CharityCampaign() {
                         </div>
 
                         {/* Hover Effect */}
-                        <div className="absolute inset-0 bg-blue-500 opacity-0 group-hover:opacity-10 transition-opacity rounded-lg"></div>
+                        <div className="absolute inset-0 bg-red-500 opacity-0 group-hover:opacity-10 transition-opacity rounded-lg  "></div>
                     </Link>
                 ))}
             </div>

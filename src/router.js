@@ -14,6 +14,10 @@ import VerifyFromAdmin from "./pages/VerifyFromAdmin";
 import CharityCampaign from "./pages/CharityCampaign";
 import CharityCampaignCreate from "./pages/CharityCampaignCreate";
 import CharityCampaignsEdit from "./pages/CharityCampaignEdit";
+import DonorCampaignList from "./pages/DonorCampaignList";
+import DonorCampaignDetail from "./pages/DonorCampaignDetail";
+import DonorCampaignCreate from "./pages/DonorCampaignCreate";
+import VerifyDonateFromAdmin from "./pages/VerifyDonateFromAdmin";
 
 const router = createBrowserRouter([
     {
@@ -71,6 +75,21 @@ const router = createBrowserRouter([
                     {
                         path: "/auth/charityCampaign/:id",
                         element: <CharityCampaignsEdit />,
+                    },
+                    {
+                        path: "/auth/DonorCampaignList",
+                        element: <DonorCampaignList />,
+                    },
+                    {
+                        path: "/auth/DonorCampaignDetail/:id",
+                        element: <DonorCampaignDetail />,
+                    },
+                    {
+                        path: "/auth/DonorCampaign/create/:id/:locateID",
+                        element: <DonorCampaignCreate />,
+                    }, {
+                        path: "/auth/VerifyDonateFromAdmin",
+                        element: <VerifyDonateFromAdmin />,
                     },
                 ]
             },

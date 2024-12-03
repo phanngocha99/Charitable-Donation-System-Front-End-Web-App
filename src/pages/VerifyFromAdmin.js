@@ -87,8 +87,8 @@ export default function VerifyFromAdmin() {
 
     return (
         <div>
-            <h1 className="text-2xl font-bold tracking-tight text-gray-900 p-8">
-                Phê duyệt Tổ chức từ thiện
+            <h1 className="text-2xl font-bold tracking-tight text-orange-700 p-8">
+                Phê duyệt Tổ chức từ thiện <i class='text-orange-600 bx bx-check-shield'></i>
             </h1>
             <div className="p-8">
                 {
