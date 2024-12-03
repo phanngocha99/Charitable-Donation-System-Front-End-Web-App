@@ -47,7 +47,7 @@ export default function VerifyFromAdmin() {
 
     if (isLoading) return <div>Loading...</div>;
     if (error) return <div>{error}</div>;
-    if (!Array.isArray(data) || data[2][1].length === 0) return <div>No data available</div>;
+    if (!Array.isArray(data) || data[2][1].length === 0) return <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 p-8">Phê duyệt tổ chức từ thiện - No data available</div >;
 
     function HandleApprove(e, item) {
         e.preventDefault();
@@ -86,43 +86,44 @@ export default function VerifyFromAdmin() {
     console.log(mergedData);
 
     return (
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 p-8">
-            {
-                mergedData.map((item, index) => (
-                    <div key={index} className="max-w-full p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-                        <div>
-                            <div className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                                Tổ chức từ thiện: {item.organizationName}
-                                <div className="mb-3 font-normal text-gray-700 dark:text-gray-400">
-                                    Số định danh: {item.licenseDocument}
+        <div>
+            <h1 className="text-2xl font-bold tracking-tight text-gray-900 p-8">
+                Phê duyệt Tổ chức từ thiện
+            </h1>
+            <div className="p-8">
+                {
+                    mergedData.map((item, index) => (
+                        <div key={index} className="mb-8 max-w-full p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                            <div>
+                                <div className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                                    Tổ chức từ thiện: {item.organizationName}
                                 </div>
                             </div>
+                            <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
+                                Số định danh: <span className='text-orange-400'>{item.licenseDocument} </span>
+                            </p>
+                            <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
+                                Họ và tên người đại diện: <span className='text-orange-400'>{item.lastName} {item.firstName}</span>
+                            </p>
+                            <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
+                                Số điện thoại người đại diện: <span className='text-orange-400'>{item.phoneNumber}</span>
+                            </p>
+                            <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
+                                Email người đại diện: <span className='text-orange-400'>{item.email}</span>
+                            </p>
+                            <div onClick={(e) => !loadingState[item.id] && HandleApprove(e, item)}>
+                                {loadingState[item.id] ? (
+                                    <span className="disabled inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white rounded-lg bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300">
+                                        Đã được xác minh</span>
+                                ) : (
+                                    <span className="cursor-pointer inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white rounded-lg bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
+                                        Xác minh</span>
+                                )}
+                            </div>
                         </div>
-                        <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
-                            Họ và tên Người Đại Diện: {item.lastName} {item.firstName}
-                        </p>
-                        <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
-                            Số điện thoại Người Đại Diện: {item.phoneNumber}
-                        </p>
-                        <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
-                            Email Người Đại Diện: {item.email}
-                        </p>
-                        <div onClick={(e) => !loadingState[item.id] && HandleApprove(e, item)}>
-                            {loadingState[item.id] ? (
-                                <span className={`disabled inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white rounded-lg ${loadingState[item.id]
-                                    ? "bg-gray-500 hover:bg-gray-500 cursor-not-allowed"
-                                    : "bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300"
-                                    }`}>Đã được xác minh</span>
-                            ) : (
-                                <span className={`cursor-pointer inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white rounded-lg ${loadingState[item.id]
-                                    ? "bg-gray-500 hover:bg-gray-500 cursor-not-allowed"
-                                    : "bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300"
-                                    }`}>Xác minh</span>
-                            )}
-                        </div>
-                    </div>
-                ))
-            }
+                    ))
+                }
+            </div>
         </div>
     );
 }

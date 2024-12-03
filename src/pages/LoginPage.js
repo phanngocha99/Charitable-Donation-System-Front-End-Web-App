@@ -3,7 +3,7 @@ import React from "react";
 import { useState, } from "react";
 import { useNavigate } from "react-router-dom";
 import { useOutletContext } from "react-router-dom";
-import { Outlet } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 // Import Utils
 import { getAuthToken, saveAuthToken } from '../utils/useToken';
 
@@ -148,7 +148,7 @@ export default function LoginPage() {
                                     </button>
                                 </div>
                             </form>
-                            <p className="mt-6 text-sm text-center text-gray-400">Chưa có tài khoản? <a href="/Signup" className="text-blue-500 focus:outline-none focus:underline hover:underline">Đăng Ký</a>.</p>
+                            <p className="mt-6 text-sm text-center text-gray-400">Chưa có tài khoản? <Link to="/notAuth/register" className="text-blue-500 focus:outline-none focus:underline hover:underline">Đăng Ký</Link>.</p>
                         </div>
                     </div>
                 </div>

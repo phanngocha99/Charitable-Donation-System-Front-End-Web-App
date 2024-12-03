@@ -11,6 +11,9 @@ import NotAuth from "./pages/NotAuth";
 import Profile from "./pages/Profile";
 import WaitVerifyFromAdmin from "./pages/WaitVerifyFromAdmin";
 import VerifyFromAdmin from "./pages/VerifyFromAdmin";
+import CharityCampaign from "./pages/CharityCampaign";
+import CharityCampaignCreate from "./pages/CharityCampaignCreate";
+import CharityCampaignsEdit from "./pages/CharityCampaignEdit";
 
 const router = createBrowserRouter([
     {
@@ -57,8 +60,18 @@ const router = createBrowserRouter([
                         path: "/auth/verifyFromAdmin",
                         element: <VerifyFromAdmin />,
                     },
-
-
+                    {
+                        path: "/auth/charityCampaign",
+                        element: <CharityCampaign />,
+                    },
+                    {
+                        path: "/auth/charityCampaign/create",
+                        element: <CharityCampaignCreate />,
+                    },
+                    {
+                        path: "/auth/charityCampaign/:id",
+                        element: <CharityCampaignsEdit />,
+                    },
                 ]
             },
         ]
