@@ -4,7 +4,7 @@ import { useOutletContext } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
 import { Outlet } from "react-router-dom";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 
 export default function CharityCampaignsEdit() {
     const { id } = useParams();
@@ -220,7 +220,10 @@ export default function CharityCampaignsEdit() {
                                     Xóa chiến dịch</span></h2>
 
                             </div>
-
+                            {/* <div className="text-center">
+                                <Link to={`/auth/ExpenseCompaignCreate/${id}`} className="mt-5 ml-5 cursor-pointer inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white rounded-lg bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
+                                    Cập nhật chi tiêu chiến dịch</Link>
+                            </div> */}
                             {msg === "fieldEmpty"
                                 ? <div className="bg-red-100 border border-red-400 text-red-700 px-4 pb-3 rounded relative" role="alert">
                                     <strong className="font-bold">Không thành công! </strong>
@@ -391,9 +394,9 @@ export default function CharityCampaignsEdit() {
                                             }} autoComplete="current-password"
                                             type="text" name="city" id="city" placeholder="Hưng Yên" className="block w-full px-4 pb-2 mt-1 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
                                     </div>
-                                    <div style={{ display: "none" }}>
+                                    <div>
                                         <label htmlFor="goalAmount" className="pt-2  block mb-1 text-sm text-gray-600 dark:text-gray-200">Số tiền cần kêu gọi của khu vực:</label>
-                                        <input required value={goalAmount || ""}
+                                        <input required value={locations[0]?.goalAmount || ""}
                                             onChange={(e) => {
                                                 const updatedLocations = [...locations];
                                                 updatedLocations[0] = { ...updatedLocations[0], goalAmount: e.target.value };

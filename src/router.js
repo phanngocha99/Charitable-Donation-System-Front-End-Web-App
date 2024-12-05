@@ -18,6 +18,7 @@ import DonorCampaignList from "./pages/DonorCampaignList";
 import DonorCampaignDetail from "./pages/DonorCampaignDetail";
 import DonorCampaignCreate from "./pages/DonorCampaignCreate";
 import VerifyDonateFromAdmin from "./pages/VerifyDonateFromAdmin";
+import ExpenseCompaignCreate from "./pages/ExpenseCompaignCreate";
 
 const router = createBrowserRouter([
     {
@@ -90,6 +91,10 @@ const router = createBrowserRouter([
                     }, {
                         path: "/auth/VerifyDonateFromAdmin",
                         element: <VerifyDonateFromAdmin />,
+                    },
+                    {
+                        path: "/auth/ExpenseCompaignCreate/:id",
+                        element: <ExpenseCompaignCreate />,
                     },
                 ]
             },

@@ -272,7 +272,7 @@ export default function CharityCampaignsCreate() {
                                             }} autoComplete="current-password"
                                             type="text" name="city" id="city" placeholder="Hưng Yên" className="block w-full px-4 pb-2 mt-1 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
                                     </div>
-                                    <div style={{ display: 'none' }}>
+                                    <div >
                                         <label htmlFor="goalAmount" className="pt-2  block mb-1 text-sm text-gray-600 dark:text-gray-200">Số tiền cần kêu gọi của khu vực:</label>
                                         <input required value={goalAmount || ""}
                                             onChange={(e) => {

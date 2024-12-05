@@ -175,27 +175,27 @@ export default function RegisterPage() {
                                         <label htmlFor="phoneNumber" className="pt-2   block mb-1 text-sm text-gray-600 dark:text-gray-200">Tài khoản (Số điện thoại):</label>
                                         <input required value={phoneNumber}
                                             onChange={(e) => setPhone(e.target.value)} autoComplete="current-password"
-                                            type="number" name="phoneNumber" id="phoneNumber" placeholder="012345679" className="block w-full px-4 pb-2 mt-1 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
+                                            type="text" name="phoneNumber" id="phoneNumber" placeholder="012345679" className="block w-full px-4 pb-2 mt-1 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
                                     </div>
                                     <div>
                                         <label htmlFor="email" className="pt-2 block mb-1 text-sm text-gray-600 dark:text-gray-200">Email:</label>
                                         <input required value={email}
-                                            onChange={(e) => setEmail(e.target.value)} autoComplete="current-password"
+                                            onChange={(e) => setEmail(e.target.value)} autoComplete="current-email"
                                             type="email" name="email" id="email" placeholder="nguyenvanan@gmail.com" className="block w-full px-4 pb-2 mt-1 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
                                     </div>
                                     <div>
                                         <div className="flex justify-between mb-1">
-                                            <label htmlFor="password" className="text-sm text-gray-600 dark:text-gray-200">Mật khẩu <i>(bắt đầu bằng chữ in hoa, có ít nhất 1 ký tự đặc biệt, tối đa 20 ký tự )</i>:</label>
+                                            <label htmlFor="password" className="text-sm text-gray-600 dark:text-gray-200">Mật khẩu:</label>
                                         </div>
 
                                         <input required value={password}
                                             onChange={(e) => setPassword(e.target.value)} autoComplete="current-password"
-                                            type="password" name="password" id="password" placeholder="Mật khẩu của bạn" className="block w-full px-4 pb-2 mt-1 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
+                                            type="password" name="password" id="password" placeholder="1-20 ký tự, bắt đầu bằng chữ in hoa, ít nhất 1 ký tự đặc biệt" className="block w-full px-4 pb-2 mt-1 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
                                     </div>
 
                                     <div>
                                         <div className="flex justify-between mb-2">
-                                            <label htmlFor="password" className="text-sm text-gray-600 dark:text-gray-200">Đăng ký với tư cách:</label>
+                                            <label htmlFor="role" className="text-sm text-gray-600 dark:text-gray-200">Đăng ký với tư cách:</label>
                                         </div>
 
                                         <select
