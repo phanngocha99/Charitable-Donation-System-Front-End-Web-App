@@ -212,7 +212,7 @@ export default function ReportCampaign() {
                                     <td className="px-6 py-4">
                                         {expenses.description}
                                     </td>
-                                    <th className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap text-black">
+                                    <th className="px-6 py-4 font-medium whitespace-nowrap text-black">
                                         {parseFloat(expenses.amount).toLocaleString()} VNĐ
                                     </th>
                                     <td className="px-6 py-4">
