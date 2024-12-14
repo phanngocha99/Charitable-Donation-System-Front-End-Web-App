@@ -79,22 +79,22 @@ export default function ExpenseCampaignList() {
                 {data.map((item) => (
                     <Link to={`/auth/ExpenseCompaignCreate/${item.id}`}
                         key={item.id}
-                        className="cursor-pointer relative group mb-8 max-w-full p-6 bg-white border border-gray-200 rounded-lg shadow transition-transform hover:scale-105 dark:bg-gray-800 dark:border-gray-700"
+                        className="cursor-pointer relative group mb-8 max-w-full p-6 border rounded-lg shadow transition-transform hover:scale-105 bg-gray-800 border-gray-700"
                     >
                         {/* Title Section */}
                         <div className="mb-4">
-                            <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
+                            <h2 className="text-2xl font-bold  text-white">
                                 {item.title}
                             </h2>
-                            <p className="text-sm font-medium text-gray-500 dark:text-gray-400">
+                            <p className="text-sm font-medium  text-gray-400">
                                 {new Date(item.startDate).toLocaleDateString()} -{" "}
                                 {new Date(item.endDate).toLocaleDateString()}
                             </p>
                         </div>
 
                         {/* Footer Section */}
-                        <div className="mt-4 pt-4 border-t border-gray-200 dark:border-gray-600">
-                            <p className="text-lg font-semibold text-gray-900 dark:text-white">
+                        <div className="mt-4 pt-4 border-t  border-gray-600">
+                            <p className="text-lg font-semibold text-white">
                                 Mục tiêu: {parseFloat(item.goalAmount).toLocaleString()} VNĐ
                             </p>
 

@@ -119,27 +119,27 @@ export default function VerifyDonateFromAdmin() {
             <div className="p-8">
                 {
                     data.map((item, index) => (
-                        <div key={index} className="mb-8 max-w-full p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                        <div key={index} className="mb-8 max-w-full p-6  border  rounded-lg shadow bg-gray-800 border-gray-700">
                             <div>
-                                <div className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                                <div className="mb-2 text-2xl font-bold tracking-tight  text-white">
                                     Đóng góp từ thiện - ID: {item.id}
                                 </div>
                             </div>
-                            <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
+                            <p className="mb-3 font-normal  text-gray-400">
                                 Thuộc ID chiến dịch: <span className='text-orange-400'>{item.campaignId} </span>
                             </p>
-                            <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
+                            <p className="mb-3 font-normal  text-gray-400">
                                 Thuộc ID khu vực: <span className='text-orange-400'>{item.locationId} </span>
                             </p>
-                            <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
+                            <p className="mb-3 font-normal text-gray-400">
                                 Thuộc ID người đóng góp: <span className='text-orange-400'>{item.donorId} </span>
                             </p>
-                            <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
+                            <p className="mb-3 font-normal text-gray-400">
                                 Số tiền đóng góp: <span className='text-orange-400'>
                                     {parseFloat(item.amount).toLocaleString()} VNĐ
                                 </span>
                             </p>
-                            <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
+                            <p className="mb-3 font-normal text-gray-400">
                                 Qua phương thức: <span className='text-orange-400'>
                                     {item.method == "bank" ?
                                         "Ngân hàng"

@@ -112,11 +112,11 @@ export default function DonorCampaignCreate() {
     }
 
     return (
-        <div className="bg-white dark:bg-gray-900 h-screen">
+        <div className=" bg-gray-900 h-screen">
             <div className="flex justify-center">
                 <div className="flex items-start w-full max-w-lg px-6 mx-auto">
                     <div className="flex-1 mt-2">
-                        <h2 className="pt-6 text-4xl font-bold text-center text-gray-700 dark:text-white">ĐÓNG GÓP</h2>
+                        <h2 className="pt-6 text-4xl font-bold text-center  text-white">ĐÓNG GÓP</h2>
                         {msg === "fieldEmpty" && (
                             <div className="bg-red-100 border border-red-400 text-red-700 px-4 pb-3 rounded">
                                 <strong>Không thành công! </strong>
@@ -132,7 +132,7 @@ export default function DonorCampaignCreate() {
                         <form onSubmit={HandleSubmit}>
                             <label
                                 htmlFor="amount"
-                                className="pt-2 block mb-1 text-sm text-gray-600 dark:text-gray-200"
+                                className="pt-2 block mb-1 text-sm text-gray-200"
                             >
                                 Số tiền ủng hộ:
                             </label>

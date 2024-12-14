@@ -8,7 +8,7 @@ export default function Profile() {
     console.log('Thông tin context: ', context);
     return (
 
-        <section className=" dark:bg-gray-900 h-screen max-w-full flex text-white">
+        <section className=" bg-gray-900 h-screen max-w-full flex text-white">
             <div className="mt-2 mx-auto ">
                 <div className="mt-2 card flex-direction-column max-w-lg border  rounded-lg p-6 ">
                     <div className="mt-2 flex justify-center">

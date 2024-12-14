@@ -93,22 +93,22 @@ export default function VerifyFromAdmin() {
             <div className="p-8">
                 {
                     mergedData.map((item, index) => (
-                        <div key={index} className="mb-8 max-w-full p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                        <div key={index} className="mb-8 max-w-full p-6  border  rounded-lg shadow bg-gray-800 border-gray-700">
                             <div>
-                                <div className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                                <div className="mb-2 text-2xl font-bold tracking-tight  text-white">
                                     Tổ chức từ thiện: {item.organizationName}
                                 </div>
                             </div>
-                            <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
+                            <p className="mb-3 font-normal text-gray-400">
                                 Số định danh: <span className='text-orange-400'>{item.licenseDocument} </span>
                             </p>
-                            <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
+                            <p className="mb-3 font-normal text-gray-400">
                                 Họ và tên người đại diện: <span className='text-orange-400'>{item.lastName} {item.firstName}</span>
                             </p>
-                            <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
+                            <p className="mb-3 font-normal text-gray-400">
                                 Số điện thoại người đại diện: <span className='text-orange-400'>{item.phoneNumber}</span>
                             </p>
-                            <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
+                            <p className="mb-3 font-normal text-gray-400">
                                 Email người đại diện: <span className='text-orange-400'>{item.email}</span>
                             </p>
                             <div onClick={(e) => !loadingState[item.id] && HandleApprove(e, item)}>

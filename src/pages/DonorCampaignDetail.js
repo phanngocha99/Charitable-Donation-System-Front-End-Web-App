@@ -175,9 +175,9 @@ export default function DonorCampaignDetail() {
 
     return (
         <div>
-            <div className="bg-white dark:bg-gray-900">
+            <div className="bg-gray-900">
                 <div className="text-center">
-                    <h2 className="p-10 text-2xl font-bold text-center text-gray-700 dark:text-white"> {title} </h2>
+                    <h2 className="p-10 text-2xl font-bold text-center  text-white"> {title} </h2>
                     <div className="pt-2 text-l text-white"> Ngày bắt đầu: <strong>{startDate}</strong> - Ngày kết thúc : <strong>{endDate}</strong></div>
                     <p
                         className={`text-l font-medium ${statusStyles[state]?.color || "text-gray-500"}`}
@@ -194,13 +194,13 @@ export default function DonorCampaignDetail() {
                 </div>
 
                 <div className="flex-col justify-center text-justify p-4">
-                    <p className="pl-4 pr-4 text-l text-gray-600 dark:text-gray-400"> {description} </p>
+                    <p className="pl-4 pr-4 text-l  text-gray-400"> {description} </p>
                 </div>
                 <div className="p-10 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-6 ">
                     <div
-                        className="cursor-pointer relative group mb-8 max-w-full p-6 bg-white border border-yellow-200 rounded-lg shadow  dark:bg-gray-800 dark:border-yellow-700 hover:shadow-yellow-500"
+                        className="cursor-pointer relative group mb-8 max-w-full p-6  border  rounded-lg shadow  bg-gray-800 border-yellow-700 hover:shadow-yellow-500"
                     >
-                        <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
+                        <h2 className="text-2xl font-bold  text-white">
                             SỐ TIỀN KÊU GỌI
                         </h2>
                         <p className="text-3xl text-orange-500 ">
@@ -208,9 +208,9 @@ export default function DonorCampaignDetail() {
                         </p>
                     </div>
                     <div
-                        className="cursor-pointer relative group mb-8 max-w-full p-6 bg-white border border-green-200 rounded-lg shadow  dark:bg-gray-800 dark:border-green-700 hover:shadow-green-500"
+                        className="cursor-pointer relative group mb-8 max-w-full p-6  border rounded-lg shadow  bg-gray-800 border-green-700 hover:shadow-green-500"
                     >
-                        <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
+                        <h2 className="text-2xl font-bold  text-white">
                             SỐ TIỀN HIỆN CÓ
                         </h2>
                         <p className="text-3xl text-green-500 ">
@@ -218,9 +218,9 @@ export default function DonorCampaignDetail() {
                         </p>
                     </div>
                     <div
-                        className="cursor-pointer relative group mb-8 max-w-full p-6 bg-white border border-blue-200 rounded-lg shadow  dark:bg-gray-800 dark:border-blue-700 hover:shadow-blue-500"
+                        className="cursor-pointer relative group mb-8 max-w-full p-6  border rounded-lg shadow  bg-gray-800 border-blue-700 hover:shadow-blue-500"
                     >
-                        <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
+                        <h2 className="text-2xl font-bold  text-white">
                             SỐ TIỀN CẦN THÊM
                         </h2>
                         <p className="text-3xl text-blue-500 ">
@@ -229,25 +229,25 @@ export default function DonorCampaignDetail() {
                     </div>
 
                 </div>
-                <h2 className="p-4 text-xl font-bold text-gray-700 dark:text-white">
+                <h2 className="p-4 text-xl font-bold  text-white">
                     Khu vực ảnh hưởng:</h2>
 
                 {locations.map((location, index) => (
                     <div key={index} className="p-2">
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 bg-white border border-white-200 rounded-lg shadow  dark:bg-gray-800 dark:border-white-700 hover:shadow-white-500">
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 border border-white-200 rounded-lg shadow  bg-gray-800 border-white-700 hover:shadow-white-500">
                             <div
                                 className="relative group mb-8 max-w-full p-6 "
                             >
-                                <p className=" text-gray-600 dark:text-gray-400"> Tỉnh: <span className="text-white font-bold">{location.province}</span></p>
-                                <p className=" text-gray-600 dark:text-gray-400"> Thành phố: <span className="text-white font-bold">{location.city}</span></p>
-                                <p className=" text-gray-600 dark:text-gray-400"> Quận: <span className="text-white font-bold">{location.district}</span></p>
-                                <p className=" text-gray-600 dark:text-gray-400"> Phường: <span className="text-white font-bold">{location.ward}</span></p>
-                                <p className=" text-gray-600 dark:text-gray-400"> MỨC THIỆT HẠI: <span className="text-orange-500 font-bold">{location.damageLevel}</span></p>
+                                <p className=" text-gray-400"> Tỉnh: <span className="text-white font-bold">{location.province}</span></p>
+                                <p className=" text-gray-400"> Thành phố: <span className="text-white font-bold">{location.city}</span></p>
+                                <p className=" text-gray-400"> Quận: <span className="text-white font-bold">{location.district}</span></p>
+                                <p className=" text-gray-400"> Phường: <span className="text-white font-bold">{location.ward}</span></p>
+                                <p className=" text-gray-400"> MỨC THIỆT HẠI: <span className="text-orange-500 font-bold">{location.damageLevel}</span></p>
                             </div>
                             <div
-                                className="relative group mb-8 mt-8 max-w-full p-6 bg-white border border-yellow-200 rounded-lg shadow  dark:bg-gray-800 dark:border-yellow-700 hover:shadow-yellow-500"
+                                className="relative group mb-8 mt-8 max-w-full p-6  border rounded-lg shadow  bg-gray-800 border-yellow-700 hover:shadow-yellow-500"
                             >
-                                <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
+                                <h2 className="text-2xl font-bold  text-white">
                                     SỐ TIỀN KÊU GỌI
                                 </h2>
                                 <p className="text-3xl text-orange-500 ">
@@ -255,9 +255,9 @@ export default function DonorCampaignDetail() {
                                 </p>
                             </div>
                             <div
-                                className="relative group mb-8 mt-8 max-w-full p-6 bg-white border border-green-200 rounded-lg shadow  dark:bg-gray-800 dark:border-green-700 hover:shadow-green-500"
+                                className="relative group mb-8 mt-8 max-w-full p-6  border rounded-lg shadow  bg-gray-800 border-green-700 hover:shadow-green-500"
                             >
-                                <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
+                                <h2 className="text-2xl font-bold  text-white">
                                     SỐ TIỀN HIỆN CÓ
                                 </h2>
                                 <p className="text-3xl text-green-500 ">
@@ -265,9 +265,9 @@ export default function DonorCampaignDetail() {
                                 </p>
                             </div>
                             <div
-                                className="relative group mb-8 mt-8 max-w-full p-6 bg-white border border-blue-200 rounded-lg shadow  dark:bg-gray-800 dark:border-blue-700 hover:shadow-blue-500"
+                                className="relative group mb-8 mt-8 max-w-full p-6  border  rounded-lg shadow  bg-gray-800 border-blue-700 hover:shadow-blue-500"
                             >
-                                <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
+                                <h2 className="text-2xl font-bold  text-white">
                                     SỐ TIỀN CẦN THÊM
                                 </h2>
                                 <p className="text-3xl text-blue-500 ">
@@ -289,7 +289,7 @@ export default function DonorCampaignDetail() {
                             setIdLocate(e.target.value);
                         }}
                         id="locationDonate"
-                        className="block w-full px-4 pb-2 mt-1 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
+                        className="block w-full px-4 pb-2 mt-1  border  rounded-md placeholder-gray-600 bg-gray-900 text-gray-300 border-gray-700  focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
                         aria-label="Chọn khu vực để đóng góp"
                     >
                         <option value="">
@@ -307,13 +307,13 @@ export default function DonorCampaignDetail() {
                 </div>
 
 
-                <h2 className="p-4 text-xl font-bold text-gray-700 dark:text-white">
+                <h2 className="p-4 text-xl font-bold  text-white">
                     Gửi Bình luận:</h2>
                 <div className="p-4 text-l">
                     <form onSubmit={HandleSubmit}>
                         <label
                             htmlFor="feedback"
-                            className="block mb-1 text-l text-gray-600 dark:text-gray-400"
+                            className="block mb-1 text-l  text-gray-400"
                         >
                             Bình luận của bạn:
                         </label>
@@ -328,14 +328,14 @@ export default function DonorCampaignDetail() {
                             rows={4}
                         />
                         <div>
-                            <label htmlFor="rate" className="pt-2 block mb-1 text-sm text-gray-600 dark:text-gray-200">
+                            <label htmlFor="rate" className="pt-2 block mb-1 text-sm  text-gray-200">
                                 Độ hài lòng trên thang điểm 5:
                             </label>
                             <select
                                 value={rate}
                                 onChange={(e) => { setRate(e.target.value) }}
                                 id="rate"
-                                className="block w-full px-4 pb-2 mt-1 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
+                                className="block w-full px-4 pb-2 mt-1   border  rounded-md placeholder-gray-600 bg-gray-900 text-gray-300 border-gray-700  focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
                                 aria-label="Chọn mức độ hài lòng" required
                             >
                                 <option value="" disabled>
@@ -357,15 +357,15 @@ export default function DonorCampaignDetail() {
                 </div>
                 <hr />
 
-                <h2 className="p-4 text-xl font-bold text-gray-700 dark:text-white">
+                <h2 className="p-4 text-xl font-bold  text-white">
                     Các Bình luận: ( Tổng đánh giá: <span className="text-orange-500 font-bold">{totalRating}</span> )</h2>
                 <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-1 gap-1 p-4">
                     {feedbacks?.map((item) => (
                         <div key={item.id} className="mb-1">
-                            <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
+                            <h2 className="text-2xl font-bold  text-white">
                                 {item.title}
                             </h2>
-                            <p className="text-sm font-medium text-gray-500 dark:text-gray-400">
+                            <p className="text-sm font-medium  text-gray-400">
                                 Bình luận vào ngày: {new Date(item.createdAt).toLocaleDateString()}
                             </p>
                             <p className="text-sm font-medium text-white">

@@ -111,7 +111,7 @@ export default function RegisterPage() {
 
     return (
         <div>
-            <div className="bg-white dark:bg-gray-900">
+            <div className=" bg-gray-900">
                 <div className="flex justify-center h-screen">
                     <div className="hidden bg-cover lg:block lg:w-2/3 opacity-75 " style={{ backgroundImage: "url(https://img.pikbest.com/origin/10/52/78/738pIkbEsTT9Q.jpg!f305cw)" }}>
                         <div className="flex items-center h-full px-20 bg-gray-900 bg-opacity-40">
@@ -125,10 +125,10 @@ export default function RegisterPage() {
                         </div>
                     </div>
 
-                    <div className="dark:bg-gray-900 flex items-start w-full max-w-md px-6 mx-auto lg:w-2/6">
+                    <div className="bg-gray-900 flex items-start w-full max-w-md px-6 mx-auto lg:w-2/6">
                         <div className="flex-1 mt-2">
                             <div className="text-center">
-                                <h2 className="text-4xl font-bold text-center text-gray-700 dark:text-white">ĐĂNG KÝ</h2>
+                                <h2 className="text-4xl font-bold text-center  text-white">ĐĂNG KÝ</h2>
                             </div>
                             {msg === "fieldEmpty"
                                 ? <div className="bg-red-100 border border-red-400 text-red-700 px-4 pb-3 rounded relative" role="alert">
@@ -154,52 +154,52 @@ export default function RegisterPage() {
                             <div className="mt-2">
                                 <form>
                                     <div>
-                                        <label htmlFor="firstName" className="pt-2 block mb-1 text-sm text-gray-600 dark:text-gray-200">Tên:</label>
+                                        <label htmlFor="firstName" className="pt-2 block mb-1 text-sm  text-gray-200">Tên:</label>
                                         <input required value={firstName}
                                             onChange={(e) => setFirstName(e.target.value)} autoComplete="current-password"
-                                            type="text" name="firstName" id="firstName" placeholder="An" className="block w-full px-4 pb-2 mt-1 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
+                                            type="text" name="firstName" id="firstName" placeholder="An" className="block w-full px-4 pb-2 mt-1  border  rounded-md placeholder-gray-600 bg-gray-900 text-gray-300 border-gray-700  focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
                                     </div>
                                     <div>
-                                        <label htmlFor="lastName" className="pt-2  block mb-1 text-sm text-gray-600 dark:text-gray-200">Họ:</label>
+                                        <label htmlFor="lastName" className="pt-2  block mb-1 text-sm  text-gray-200">Họ:</label>
                                         <input required value={lastName}
                                             onChange={(e) => setLastName(e.target.value)} autoComplete="current-password"
-                                            type="text" name="lastName" id="lastName" placeholder="Nguyễn Văn" className="block w-full px-4 pb-2 mt-1 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
+                                            type="text" name="lastName" id="lastName" placeholder="Nguyễn Văn" className="block w-full px-4 pb-2 mt-1  border  rounded-md placeholder-gray-600 bg-gray-900 text-gray-300 border-gray-700 focus:border-blue-400  focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
                                     </div>
                                     <div>
-                                        <label htmlFor="birthDate" className="pt-2 block mb-1 text-sm text-gray-600 dark:text-gray-200">Ngày tháng năm sinh:</label>
+                                        <label htmlFor="birthDate" className="pt-2 block mb-1 text-sm  text-gray-200">Ngày tháng năm sinh:</label>
                                         <input required value={birthDate}
                                             onChange={(e) => setbirthDate(e.target.value)} autoComplete="current-password"
-                                            type="date" name="birthDate" id="birthDate" className="block w-full px-4 pb-2 mt-1 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40 dark:[color-scheme:dark]" />
+                                            type="date" name="birthDate" id="birthDate" className="block w-full px-4 pb-2 mt-1  border rounded-md placeholder-gray-600 bg-gray-900 text-gray-300 border-gray-700  focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40 [color-scheme:dark]" />
                                     </div>
                                     <div>
-                                        <label htmlFor="phoneNumber" className="pt-2   block mb-1 text-sm text-gray-600 dark:text-gray-200">Tài khoản (Số điện thoại):</label>
+                                        <label htmlFor="phoneNumber" className="pt-2   block mb-1 text-sm  text-gray-200">Tài khoản (Số điện thoại):</label>
                                         <input required value={phoneNumber}
                                             onChange={(e) => setPhone(e.target.value)} autoComplete="current-password"
-                                            type="text" name="phoneNumber" id="phoneNumber" placeholder="012345679" className="block w-full px-4 pb-2 mt-1 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
+                                            type="text" name="phoneNumber" id="phoneNumber" placeholder="012345679" className="block w-full px-4 pb-2 mt-1 border  rounded-md placeholder-gray-600 bg-gray-900 text-gray-300 border-gray-700  focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
                                     </div>
                                     <div>
-                                        <label htmlFor="email" className="pt-2 block mb-1 text-sm text-gray-600 dark:text-gray-200">Email:</label>
+                                        <label htmlFor="email" className="pt-2 block mb-1 text-sm  text-gray-200">Email:</label>
                                         <input required value={email}
                                             onChange={(e) => setEmail(e.target.value)} autoComplete="current-email"
-                                            type="email" name="email" id="email" placeholder="nguyenvanan@gmail.com" className="block w-full px-4 pb-2 mt-1 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
+                                            type="email" name="email" id="email" placeholder="nguyenvanan@gmail.com" className="block w-full px-4 pb-2 mt-1  border rounded-md placeholder-gray-600 bg-gray-900 text-gray-300 border-gray-700 focus:border-blue-400  focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
                                     </div>
                                     <div>
                                         <div className="flex justify-between mb-1">
-                                            <label htmlFor="password" className="text-sm text-gray-600 dark:text-gray-200">Mật khẩu:</label>
+                                            <label htmlFor="password" className="text-sm  text-gray-200">Mật khẩu:</label>
                                         </div>
 
                                         <input required value={password}
                                             onChange={(e) => setPassword(e.target.value)} autoComplete="current-password"
-                                            type="password" name="password" id="password" placeholder="1-20 ký tự, bắt đầu bằng chữ in hoa, ít nhất 1 ký tự đặc biệt" className="block w-full px-4 pb-2 mt-1 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
+                                            type="password" name="password" id="password" placeholder="1-20 ký tự, bắt đầu bằng chữ in hoa, ít nhất 1 ký tự đặc biệt" className="block w-full px-4 pb-2 mt-1  border rounded-md placeholder-gray-600 bg-gray-900 text-gray-300 border-gray-700 focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
                                     </div>
 
                                     <div>
                                         <div className="flex justify-between mb-2">
-                                            <label htmlFor="role" className="text-sm text-gray-600 dark:text-gray-200">Đăng ký với tư cách:</label>
+                                            <label htmlFor="role" className="text-sm  text-gray-200">Đăng ký với tư cách:</label>
                                         </div>
 
                                         <select
-                                            onChange={(e) => setRole(e.target.value)} id="role" className="block w-full px-4 pb-2 mt-1 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40">
+                                            onChange={(e) => setRole(e.target.value)} id="role" className="block w-full px-4 pb-2 mt-1  rounded-md placeholder-gray-600 bg-gray-900 text-gray-300 border-gray-700  focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40">
                                             <option>--Chọn--</option>
                                             <option value="donor">Người đóng góp</option>
                                             <option value="charity_org">Tổ chức từ thiện</option>
@@ -211,16 +211,16 @@ export default function RegisterPage() {
                                     {role === "charity_org" &&
                                         <div>
                                             <div>
-                                                <label htmlFor="organizationName" className="pt-2 block mb-1 text-sm text-gray-600 dark:text-gray-200">Tên tổ chức từ thiện:</label>
+                                                <label htmlFor="organizationName" className="pt-2 block mb-1 text-sm  text-gray-200">Tên tổ chức từ thiện:</label>
                                                 <input required value={organizationName}
                                                     onChange={(e) => setOrganizationName(e.target.value)} autoComplete="current-password"
-                                                    type="text" name="organizationName" id="organizationName" placeholder="Chống bão Yagi" className="block w-full px-4 pb-2 mt-1 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
+                                                    type="text" name="organizationName" id="organizationName" placeholder="Chống bão Yagi" className="block w-full px-4 pb-2 mt-1  border rounded-md placeholder-gray-600 bg-gray-900 text-gray-300 border-gray-700 focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
                                             </div>
                                             <div>
-                                                <label htmlFor="licenseDocument" className="pt-2 block mb-1 text-sm text-gray-600 dark:text-gray-200">Số định danh tổ chức:</label>
+                                                <label htmlFor="licenseDocument" className="pt-2 block mb-1 text-sm  text-gray-200">Số định danh tổ chức:</label>
                                                 <input required value={licenseDocument}
                                                     onChange={(e) => setLicenseDocument(e.target.value)} autoComplete="current-password"
-                                                    type="text" name="licenseDocument" id="licenseDocument" placeholder="180XXXYYYY190" className="block w-full px-4 pb-2 mt-1 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
+                                                    type="text" name="licenseDocument" id="licenseDocument" placeholder="180XXXYYYY190" className="block w-full px-4 pb-2 mt-1 border  rounded-md placeholder-gray-600 bg-gray-900 text-gray-300 border-gray-700  focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
                                             </div>
                                         </div>
                                     }

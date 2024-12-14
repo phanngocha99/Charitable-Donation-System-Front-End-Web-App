@@ -267,12 +267,12 @@ export default function CharityCampaignsEdit() {
     }
     return (
         <div>
-            <div className="bg-white dark:bg-gray-900">
+            <div className=" bg-gray-900">
                 <div className="flex justify-center">
-                    <div className="dark:bg-gray-900 flex items-start w-full max-w-md px-6 mx-auto lg:w-2/6">
+                    <div className="bg-gray-900 flex items-start w-full max-w-md px-6 mx-auto lg:w-2/6">
                         <div className="flex-1 mt-2">
                             <div className="text-center">
-                                <h2 className="text-4xl font-bold text-center text-gray-700 dark:text-white">Cập nhật chiến dịch <span onClick={deleteCampaign} className="ms-5 ml-5 cursor-pointer inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white rounded-lg bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
+                                <h2 className="text-4xl font-bold text-center  text-white">Cập nhật chiến dịch <span onClick={deleteCampaign} className="ms-5 ml-5 cursor-pointer inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white rounded-lg bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
                                     Xóa chiến dịch</span></h2>
 
                             </div>
@@ -304,46 +304,46 @@ export default function CharityCampaignsEdit() {
                             <div className="mt-2">
                                 <form>
                                     <div>
-                                        <label htmlFor="firstName" className="pt-2 block mb-1 text-sm text-gray-600 dark:text-gray-200">Tên chiến dịch:</label>
+                                        <label htmlFor="firstName" className="pt-2 block mb-1 text-sm  text-gray-200">Tên chiến dịch:</label>
                                         <input required value={title}
                                             onChange={(e) => setTitle(e.target.value)}
-                                            type="text" name="title" id="title" placeholder="Bão Yagi" className="block w-full px-4 pb-2 mt-1 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
+                                            type="text" name="title" id="title" placeholder="Bão Yagi" className="block w-full px-4 pb-2 mt-1  border  rounded-md placeholder-gray-600 bg-gray-900 text-gray-300 border-gray-700  focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
                                     </div>
                                     <div>
-                                        <label htmlFor="description" className="pt-2  block mb-1 text-sm text-gray-600 dark:text-gray-200">Thông tin chi tiết:</label>
+                                        <label htmlFor="description" className="pt-2  block mb-1 text-sm  text-gray-200">Thông tin chi tiết:</label>
                                         <textarea rows='10' required value={description}
                                             onChange={(e) => setDescription(e.target.value)}
-                                            type="text" name="description" id="description" placeholder="Chi tiết" className="block w-full px-4 pb-2 mt-1 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
+                                            type="text" name="description" id="description" placeholder="Chi tiết" className="block w-full px-4 pb-2 mt-1  border  rounded-md placeholder-gray-600 bg-gray-900 text-gray-300 border-gray-700  focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
                                     </div>
                                     <div>
-                                        <label htmlFor="url" className="pt-2  block mb-1 text-sm text-gray-600 dark:text-gray-200">URL Hình Ảnh:</label>
+                                        <label htmlFor="url" className="pt-2  block mb-1 text-sm  text-gray-200">URL Hình Ảnh:</label>
                                         <textarea required value={url}
                                             onChange={(e) => setURL(e.target.value)}
-                                            type="text" name="url" id="url" placeholder="URL hình ảnh" className="block w-full px-4 pb-2 mt-1 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
+                                            type="text" name="url" id="url" placeholder="URL hình ảnh" className="block w-full px-4 pb-2 mt-1  border rounded-md placeholder-gray-600 bg-gray-900 text-gray-300 border-gray-700  focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
                                     </div>
                                     <div>
-                                        <label htmlFor="goalAmount" className="pt-2 block mb-1 text-sm text-gray-600 dark:text-gray-200">Số tiền kêu gọi:</label>
-                                        <p className="block w-full px-4 pb-2 mt-1 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40 dark:[color-scheme:dark]">Tự động điền từ cố tiền kêu gọi của các khu vực <span className="font-bold">{goalAmount}</span> </p>
+                                        <label htmlFor="goalAmount" className="pt-2 block mb-1 text-sm  text-gray-200">Số tiền kêu gọi:</label>
+                                        <p className="block w-full px-4 pb-2 mt-1  border  rounded-md placeholder-gray-600 bg-gray-900 text-gray-300 border-gray-700  focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40 [color-scheme:dark]">Tự động điền từ cố tiền kêu gọi của các khu vực <span className="font-bold">{goalAmount}</span> </p>
                                     </div>
                                     <div>
-                                        <label htmlFor="startDate" className="pt-2 block mb-1 text-sm text-gray-600 dark:text-gray-200">Ngày bắt đầu:</label>
+                                        <label htmlFor="startDate" className="pt-2 block mb-1 text-sm text-gray-200">Ngày bắt đầu:</label>
                                         <input required value={startDate}
                                             onChange={(e) => setStartDate(e.target.value)}
-                                            type="date" name="startDate" id="startDate" className="block w-full px-4 pb-2 mt-1 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
+                                            type="date" name="startDate" id="startDate" className="block w-full px-4 pb-2 mt-1 border  rounded-md placeholder-gray-600 bg-gray-900 text-gray-300 border-gray-700  focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
                                     </div>
                                     <div>
-                                        <label htmlFor="endDate" className="pt-2 block mb-1 text-sm text-gray-600 dark:text-gray-200">Ngày kết thúc:</label>
+                                        <label htmlFor="endDate" className="pt-2 block mb-1 text-sm text-gray-200">Ngày kết thúc:</label>
                                         <input required value={endDate}
                                             onChange={(e) => setEndDate(e.target.value)}
-                                            type="date" name="endDate" id="endDate" className="block w-full px-4 pb-2 mt-1 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
+                                            type="date" name="endDate" id="endDate" className="block w-full px-4 pb-2 mt-1  border  rounded-md placeholder-gray-600 bg-gray-900 text-gray-300 border-gray-700  focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
                                     </div>
                                     {context.auth.user.role === "admin"
                                         ? <div>
-                                            <label htmlFor="state" className="pt-2 block mb-1 text-sm text-gray-600 dark:text-gray-200">
+                                            <label htmlFor="state" className="pt-2 block mb-1 text-sm  text-gray-200">
                                                 Trạng thái:
                                             </label>
                                             <select required value={state}
-                                                onChange={(e) => setState(e.target.value)} id="state" className="block w-full px-4 pb-2 mt-1 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40">
+                                                onChange={(e) => setState(e.target.value)} id="state" className="block w-full px-4 pb-2 mt-1  border  rounded-md placeholder-gray-600 bg-gray-900 text-gray-300 border-gray-700  focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40">
                                                 <option value="">--Chọn--</option>
                                                 <option value="pending">Chờ </option>
                                                 <option value="active">Đang hoạt động</option>
@@ -357,7 +357,7 @@ export default function CharityCampaignsEdit() {
 
                                     {locations.map((location, index) => (
                                         <div key={index}>
-                                            <h2 className="pt-2 text-l font-bold text-center text-gray-700 dark:text-white"> Khu vực số {index + 1}:</h2>
+                                            <h2 className="pt-2 text-l font-bold text-center text-white"> Khu vực số {index + 1}:</h2>
                                             <div className="mt-2">
                                                 {index != 0 &&
                                                     <button onClick={event => HandleRemoveLocation(event, index)}
@@ -367,17 +367,17 @@ export default function CharityCampaignsEdit() {
                                                 }
                                             </div>
                                             <div>
-                                                <label htmlFor="name" className="pt-2 block mb-1 text-sm text-gray-600 dark:text-gray-200">Tên khu vực:</label>
+                                                <label htmlFor="name" className="pt-2 block mb-1 text-sm  text-gray-200">Tên khu vực:</label>
                                                 <input required value={location.name || ""}
                                                     onChange={(e) => {
                                                         const updatedLocations = [...locations];
                                                         updatedLocations[index] = { ...updatedLocations[index], name: e.target.value };
                                                         setLocations(updatedLocations);
                                                     }}
-                                                    type="text" name="name" id="name" placeholder="Hưng Yên" className="block w-full px-4 pb-2 mt-1 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
+                                                    type="text" name="name" id="name" placeholder="Hưng Yên" className="block w-full px-4 pb-2 mt-1  border  rounded-md placeholder-gray-600 bg-gray-900 text-gray-300 border-gray-700 focus:border-blue-400  focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
                                             </div>
                                             <div>
-                                                <label htmlFor="latitude" className="pt-2  block mb-1 text-sm text-gray-600 dark:text-gray-200">Kinh độ của khu vực:
+                                                <label htmlFor="latitude" className="pt-2  block mb-1 text-sm  text-gray-200">Kinh độ của khu vực:
                                                     <a className="text-blue-500" href="https://www.latlong.net/"> ( Lấy thông tin kinh độ và vĩ độ tại đây )</a></label>
                                                 <input required
                                                     value={location.latitude || ""}
@@ -387,20 +387,20 @@ export default function CharityCampaignsEdit() {
                                                         setLocations(updatedLocations);
                                                     }}
 
-                                                    type="text" name="latitude" id="latitude" placeholder="19.25" className="block w-full px-4 pb-2 mt-1 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
+                                                    type="text" name="latitude" id="latitude" placeholder="19.25" className="block w-full px-4 pb-2 mt-1  border  rounded-md placeholder-gray-600 bg-gray-900 text-gray-300 border-gray-700 focus:border-blue-400  focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
                                             </div>
                                             <div>
-                                                <label htmlFor="longitude" className="pt-2  block mb-1 text-sm text-gray-600 dark:text-gray-200">Vĩ độ của khu vực:<a className="text-blue-500" href="https://www.latlong.net/"> ( Lấy thông tin kinh độ và vĩ độ tại đây )</a></label>
+                                                <label htmlFor="longitude" className="pt-2  block mb-1 text-sm  text-gray-200">Vĩ độ của khu vực:<a className="text-blue-500" href="https://www.latlong.net/"> ( Lấy thông tin kinh độ và vĩ độ tại đây )</a></label>
                                                 <input required value={location.longitude || ""}
                                                     onChange={(e) => {
                                                         const updatedLocations = [...locations];
                                                         updatedLocations[index] = { ...updatedLocations[index], longitude: e.target.value };
                                                         setLocations(updatedLocations);
                                                     }}
-                                                    type="text" name="longitude" id="longitude" placeholder="25.19" className="block w-full px-4 pb-2 mt-1 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
+                                                    type="text" name="longitude" id="longitude" placeholder="25.19" className="block w-full px-4 pb-2 mt-1 border  rounded-md placeholder-gray-600 bg-gray-900 text-gray-300 border-gray-700 focus:border-blue-400  focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
                                             </div>
                                             <div>
-                                                <label htmlFor="damageLevel" className="pt-2 block mb-1 text-sm text-gray-600 dark:text-gray-200">
+                                                <label htmlFor="damageLevel" className="pt-2 block mb-1 text-sm  text-gray-200">
                                                     Độ thiệt hại:
                                                 </label>
                                                 <select
@@ -411,7 +411,7 @@ export default function CharityCampaignsEdit() {
                                                         setLocations(updatedLocations); // Update the state
                                                     }}
                                                     id="damageLevel"
-                                                    className="block w-full px-4 pb-2 mt-1 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
+                                                    className="block w-full px-4 pb-2 mt-1 border  rounded-md placeholder-gray-600 bg-gray-900 text-gray-300 border-gray-700 focus:border-blue-400  focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
                                                     aria-label="Chọn mức độ thiệt hại"
                                                 >
                                                     <option value="" disabled>
@@ -426,50 +426,50 @@ export default function CharityCampaignsEdit() {
                                             </div>
 
                                             <div>
-                                                <label htmlFor="ward" className="pt-2  block mb-1 text-sm text-gray-600 dark:text-gray-200">Phường:</label>
+                                                <label htmlFor="ward" className="pt-2  block mb-1 text-sm  text-gray-200">Phường:</label>
                                                 <input required value={location.ward || ""}
                                                     onChange={(e) => {
                                                         const updatedLocations = [...locations];
                                                         updatedLocations[index] = { ...updatedLocations[index], ward: e.target.value };
                                                         setLocations(updatedLocations);
                                                     }}
-                                                    type="text" name="ward" id="ward" placeholder="Phường 1" className="block w-full px-4 pb-2 mt-1 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
+                                                    type="text" name="ward" id="ward" placeholder="Phường 1" className="block w-full px-4 pb-2 mt-1  border rounded-md placeholder-gray-600 bg-gray-900 text-gray-300 border-gray-700 focus:border-blue-400  focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
                                             </div>
                                             <div>
-                                                <label htmlFor="district" className="pt-2  block mb-1 text-sm text-gray-600 dark:text-gray-200">Quận:</label>
+                                                <label htmlFor="district" className="pt-2  block mb-1 text-sm  text-gray-200">Quận:</label>
                                                 <input required value={location.district || ""}
                                                     onChange={(e) => {
                                                         const updatedLocations = [...locations];
                                                         updatedLocations[index] = { ...updatedLocations[index], district: e.target.value };
                                                         setLocations(updatedLocations);
                                                     }}
-                                                    type="text" name="district" id="district" placeholder="Quận 10" className="block w-full px-4 pb-2 mt-1 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
+                                                    type="text" name="district" id="district" placeholder="Quận 10" className="block w-full px-4 pb-2 mt-1  border rounded-md placeholder-gray-600 bg-gray-900 text-gray-300 border-gray-700  focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
                                             </div>
                                             <div>
-                                                <label htmlFor="province" className="pt-2  block mb-1 text-sm text-gray-600 dark:text-gray-200">Tỉnh:</label>
+                                                <label htmlFor="province" className="pt-2  block mb-1 text-sm  text-gray-200">Tỉnh:</label>
                                                 <input required value={location.province || ""}
                                                     onChange={(e) => {
                                                         const updatedLocations = [...locations];
                                                         updatedLocations[index] = { ...updatedLocations[index], province: e.target.value };
                                                         setLocations(updatedLocations);
                                                     }}
-                                                    type="text" name="province" id="province" placeholder="Hưng Yên" className="block w-full px-4 pb-2 mt-1 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
+                                                    type="text" name="province" id="province" placeholder="Hưng Yên" className="block w-full px-4 pb-2 mt-1 border rounded-md placeholder-gray-600 bg-gray-900 text-gray-300 border-gray-700  focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
                                             </div>
                                             <div>
-                                                <label htmlFor="city" className="pt-2  block mb-1 text-sm text-gray-600 dark:text-gray-200">Thành phố:</label>
+                                                <label htmlFor="city" className="pt-2  block mb-1 text-sm  text-gray-200">Thành phố:</label>
                                                 <input required value={location.city || ""}
                                                     onChange={(e) => {
                                                         const updatedLocations = [...locations];
                                                         updatedLocations[index] = { ...updatedLocations[index], city: e.target.value };
                                                         setLocations(updatedLocations);
                                                     }}
-                                                    type="text" name="city" id="city" placeholder="Hưng Yên" className="block w-full px-4 pb-2 mt-1 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
+                                                    type="text" name="city" id="city" placeholder="Hưng Yên" className="block w-full px-4 pb-2 mt-1  border  rounded-md placeholder-gray-600 bg-gray-900 text-gray-300 border-gray-700  focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
                                             </div>
                                             <div>
-                                                <label htmlFor="goalAmount" className="pt-2  block mb-1 text-sm text-gray-600 dark:text-gray-200">Số tiền cần kêu gọi của khu vực:</label>
+                                                <label htmlFor="goalAmount" className="pt-2  block mb-1 text-sm  text-gray-200">Số tiền cần kêu gọi của khu vực:</label>
                                                 <input required value={parseInt(locations[index].goalAmount) || ""}
                                                     onChange={(e) => HandleAmount(index, e.target.value)}
-                                                    type="text" name="goalAmount" id="goalAmount" placeholder="25000000" className="block w-full px-4 pb-2 mt-1 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
+                                                    type="text" name="goalAmount" id="goalAmount" placeholder="25000000" className="block w-full px-4 pb-2 mt-1  border  rounded-md placeholder-gray-600 bg-gray-900 text-gray-300 border-gray-700  focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
                                             </div>
                                         </div>
                                     ))}
