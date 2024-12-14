@@ -46,7 +46,7 @@ export default function CharityCampaign() {
                 <Link to='/auth/charityCampaign/create' className=" ml-5 cursor-pointer inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white rounded-lg bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
                     Tạo mới chiến dịch</Link>
             </h1>
-            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 p-8">Phê duyệt tổ chức từ thiện - No data available</div >;
+            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 p-8">Phê duyệt tổ chức từ thiện - Hiện không có chiến dịch nào, hãy tạo chiến dịch!</div >;
         </div>
     )
 

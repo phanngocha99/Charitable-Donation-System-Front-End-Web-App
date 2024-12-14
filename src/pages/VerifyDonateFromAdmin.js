@@ -50,7 +50,7 @@ export default function VerifyDonateFromAdmin() {
 
     if (isLoading) return <div>Loading...</div>;
     if (error) return <div>{error}</div>;
-    if (!Array.isArray(data) || data.length === 0) return <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 p-8">Phê duyệt tổ chức từ thiện - No data available</div >;
+    if (!Array.isArray(data) || data.length === 0) return <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 p-8">Phê duyệt đóng góp từ thiện - Hiện không có đóng góp nào</div >;
 
     function HandleApprove(e, item) {
         e.preventDefault();

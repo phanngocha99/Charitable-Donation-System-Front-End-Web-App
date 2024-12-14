@@ -2,29 +2,28 @@ import React, { useState, useEffect } from "react";
 import { useOutletContext, useNavigate, useParams } from "react-router-dom";
 
 export default function ExpenseCompaignCreate() {
-    const { id, locateID } = useParams();
+    const { id } = useParams();
     const context = useOutletContext();
     const navigate = useNavigate();
-
     const [amount, setAmount] = useState('');
-    const [method, setMethod] = useState('cash');
-    const [donated, setDonated] = useState(false);
+    const [description, setDescription] = useState('');
+    const [expensed, setExpensed] = useState(false);
     const [msg, setMsg] = useState('');
     const [err, setErr] = useState('');
     const [isSubmitting, setIsSubmitting] = useState(false);
 
-    const donorInformation = { campaignId: id, locationId: locateID, amount, method };
+    const expenseInformation = { campaignId: id, amount, description };
 
     useEffect(() => {
-        if (!id || !locateID) {
+        if (!id) {
             console.error("Invalid route parameters.");
-            // navigate("/auth/charityCampaign");
+            navigate("/auth/ExpenseCampaignList");
         }
-    }, [id, locateID, navigate]);
+    }, [id]);
 
     const validInput = (info) => {
-        const { amount, method } = info;
-        if (!amount || !method) {
+        const { amount, description } = info;
+        if (!amount || !description) {
             setMsg('fieldEmpty');
             return false;
         }
@@ -32,10 +31,10 @@ export default function ExpenseCompaignCreate() {
     };
 
     const registerApi = async (info) => {
-        if (window.confirm("Bạn xác nhận muốn đóng góp?")) {
+        if (window.confirm("Bạn xác nhận muốn chi tiêu?")) {
             setIsSubmitting(true);
             try {
-                const response = await fetch("http://localhost:5000/donations/create", {
+                const response = await fetch("http://localhost:5000/expenses/create", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
@@ -46,13 +45,13 @@ export default function ExpenseCompaignCreate() {
                 const data = await response.json();
 
                 if (response.ok) {
-                    setDonated(true);
+                    setExpensed(true);
                 } else {
-                    setMsg("DonationFail");
+                    setMsg("ExpenseFail");
                     setErr(data.message);
                 }
             } catch (error) {
-                setMsg("DonationFail");
+                setMsg("ExpenseFail");
                 setErr(error.message);
             } finally {
                 setIsSubmitting(false);
@@ -62,43 +61,23 @@ export default function ExpenseCompaignCreate() {
 
     const HandleSubmit = (event) => {
         event.preventDefault();
-        if (validInput(donorInformation)) {
+        if (validInput(expenseInformation)) {
             setMsg('');
-            registerApi(donorInformation);
+            registerApi(expenseInformation);
         }
     };
 
     const Redirect = () => {
-        setDonated(false);
-        // navigate(`/auth/DonorCampaignList`);
+        setExpensed(false);
+        navigate(`/auth/ExpenseCompaignList`);
     };
 
-    const PaymentDetails = ({ method }) => {
-        switch (method) {
-            case "cash":
-                return <p className="text-orange-400">Chúng tôi sẽ liên hệ bạn qua số điện thoại để tiến hành giao dịch!</p>;
-            case "bank":
-            case "payment":
-                return (
-                    <div className="flex justify-center text-orange-400">
-                        Vui lòng chuyển qua thông tin chuyển khoản {method === "bank" ? "ngân hàng" : "ví điện tử"}:
-                        <img
-                            style={{ width: "50%" }}
-                            src="https://files.get-qr.com/files/674ecf5a676d1f3195812680/sY4cXW.png"
-                            alt="QR Code"
-                        />
-                    </div>
-                );
-            default:
-                return null;
-        }
-    };
 
-    if (donated) {
+    if (expensed) {
         return (
             <div className="text-center h-screen bg-blue-100 border border-blue-400 text-blue-700 px-4 pb-3 rounded relative">
-                <h1 className="mt-4 font-bold">Đóng góp đã được ghi lại!</h1>
-                <p>Cảm ơn bạn đã đóng góp!!!</p>
+                <h1 className="mt-4 font-bold">Chi tiêu đã được ghi lại!</h1>
+                <p>Cảm ơn bạn đã ghi chú!!!</p>
                 <div className="mt-4">
                     <button
                         onClick={Redirect}
@@ -116,17 +95,17 @@ export default function ExpenseCompaignCreate() {
             <div className="flex justify-center">
                 <div className="flex items-start w-full max-w-lg px-6 mx-auto">
                     <div className="flex-1 mt-2">
-                        <h2 className="pt-6 text-4xl font-bold text-center text-gray-700 dark:text-white">ĐÓNG GÓP</h2>
+                        <h2 className="pt-6 text-4xl font-bold text-center text-gray-700 dark:text-white">CHI TIÊU</h2>
                         {msg === "fieldEmpty" && (
                             <div className="bg-red-100 border border-red-400 text-red-700 px-4 pb-3 rounded">
                                 <strong>Không thành công! </strong>
                                 <span>Một số thông tin chưa điền!</span>
                             </div>
                         )}
-                        {msg === "DonationFail" && (
+                        {msg === "ExpenseFail" && (
                             <div className="bg-red-100 border border-red-400 text-red-700 px-4 pb-3 rounded">
                                 <strong>Không thành công! </strong>
-                                <span>Đóng góp không thành công: {err}</span>
+                                <span>Ghi chú không thành công: {err}</span>
                             </div>
                         )}
                         <form onSubmit={HandleSubmit}>
@@ -134,7 +113,7 @@ export default function ExpenseCompaignCreate() {
                                 htmlFor="amount"
                                 className="pt-2 block mb-1 text-sm text-gray-600 dark:text-gray-200"
                             >
-                                Số tiền ủng hộ:
+                                Số tiền chi tiêu:
                             </label>
                             <input
                                 value={amount}
@@ -142,28 +121,32 @@ export default function ExpenseCompaignCreate() {
                                 type="number"
                                 name="amount"
                                 id="amount"
+                                placeholder="2500000"
                                 className="block w-full px-4 pb-2 mt-1 border rounded-md focus:ring-blue-400"
                             />
-                            <div className="pt-4 grid grid-cols-1 md:grid-cols-3 gap-6">
-                                {["cash", "bank", "payment"].map((type) => (
-                                    <div
-                                        key={type}
-                                        onClick={() => setMethod(type)}
-                                        className={`cursor-pointer p-6 border rounded-lg shadow ${method === type ? "border-blue-500" : "border-blue-300"
-                                            }`}
-                                    >
-                                        <h2 className="text-white text-sm font-bold">{type.toUpperCase()}</h2>
-                                    </div>
-                                ))}
-                            </div>
-                            <PaymentDetails method={method} />
+
+                            <label
+                                htmlFor="amount"
+                                className="pt-2 block mb-1 text-sm text-gray-600 dark:text-gray-200"
+                            >
+                                Chi tiết:
+                            </label>
+                            <input
+                                value={description}
+                                onChange={(e) => setDescription(e.target.value)}
+                                type="text"
+                                name="description"
+                                id="description"
+                                placeholder="Mua vật phẩm cứu trợ: 10 thùng mỳ tôm"
+                                className="mb-2 block w-full px-4 pb-2 mt-1 border rounded-md focus:ring-blue-400"
+                            />
+
                             <button
                                 type="submit"
-                                disabled={isSubmitting}
-                                className={`w-full px-4 py-2 tracking-wide text-white rounded-md ${isSubmitting ? "bg-gray-400" : "bg-blue-500 hover:bg-blue-400"
+                                className={`p-2 w-full px-4 py-2 tracking-wide text-white rounded-md ${isSubmitting ? "bg-gray-400" : "bg-blue-500 hover:bg-blue-400"
                                     }`}
                             >
-                                {isSubmitting ? "Processing..." : "Xác nhận đóng góp"}
+                                {isSubmitting ? "Processing..." : "Xác nhận chi tiêu"}
                             </button>
                         </form>
                     </div>

@@ -22,9 +22,11 @@ export default function DonorCampaignDetail() {
     const [endDate, setEndDate] = useState('');
     const [state, setState] = useState('');
     const [feedback, setFeedback] = useState('');
+    const [url, setUrl] = useState('');
     const [rate, setRate] = useState('');
+    const [totalRating, setTotalRating] = useState('');
     const [feedbacks, setFeedbacks] = useState();
-
+    const [idLocate, setIdLocate] = useState();
     const [locations, setLocations] = useState(
         [{
             name: '',
@@ -39,7 +41,7 @@ export default function DonorCampaignDetail() {
             goalAmount: '',
         }]
     );
-    const campaignInformation = { title, description, goalAmount, startDate, endDate, locations };
+    const campaignInformation = { title, description, goalAmount, startDate, endDate, locations, currentAmount, distributedAmount };
     console.log('campaignInformation', campaignInformation);
 
     async function HandleSubmit(event) {
@@ -90,54 +92,7 @@ export default function DonorCampaignDetail() {
         },
     };
 
-    function Map(locations) {
-        // MAP
-        // Initialize the map once the component is mounted
-        const ol = window.ol;
-        // Define map layers and map view
-        var longitude = Math.floor(locations[0].longitude);
-        var latitude = Math.floor(locations[0].latitude);
-        var lonLat = [longitude, latitude];
-        console.log(longitude, latitude);
-        console.log("lonLat", lonLat);
 
-        var map = new ol.Map({
-            target: 'map',
-            layers: [
-                new ol.layer.Tile({
-                    source: new ol.source.OSM()
-                })
-            ],
-            view: new ol.View({
-                center: ol.proj.fromLonLat(lonLat),
-                zoom: 15
-            })
-        });
-
-        // Add marker
-        var marker = new ol.Feature({
-            geometry: new ol.geom.Point(
-                ol.proj.fromLonLat(lonLat)
-            )
-        });
-
-        marker.setStyle(new ol.style.Style({
-            image: new ol.style.Icon(({
-                crossOrigin: 'anonymous',
-                src: '/images/marker-icon.png'
-            }))
-        }));
-
-        var vectorSource = new ol.source.Vector({
-            features: [marker]
-        });
-
-        var markerVectorLayer = new ol.layer.Vector({
-            source: vectorSource
-        });
-
-        map.addLayer(markerVectorLayer);
-    };
     useEffect(() => {
         // Function to fetch data
         console.log('id', id);
@@ -164,11 +119,10 @@ export default function DonorCampaignDetail() {
                     setDistributedAmount(data.distributedAmount);
                     setCurrentAmount(data.currentAmount);
                     setState(data.status);
-
+                    setUrl(data.url);
                     // Validate and set locations
                     if (Array.isArray(data.Locations)) {
                         setLocations(data.Locations);
-                        Map(data.Locations);
                     } else {
                         console.error("Invalid locations format:", data.Locations);
                         setLocations([]); // Fallback
@@ -194,6 +148,16 @@ export default function DonorCampaignDetail() {
 
                 if (response.status === 200) {
                     console.log('FEEDBACK GETTED:', data);
+                    let sumRate = 0;
+                    if (data.length > 0) {
+                        for (let i = 0; i < data.length; i++) {
+                            sumRate += data[i].rating;
+                        }
+                        setTotalRating((sumRate / data.length) + "/5")
+                    } else {
+                        setTotalRating("Chưa có đánh giá nào")
+
+                    }
                     setFeedbacks(data);
                 } else {
                     console.error('FEEDBACK GETTED Fail:', data.message);
@@ -222,10 +186,17 @@ export default function DonorCampaignDetail() {
                     </p>
                 </div>
 
+                <div className="flex flex-col justify-center items-center">
+                    <img
+                        className="p-4 w-1/2 object-cover"
+                        src={url}
+                        alt="" />
+                </div>
+
                 <div className="flex-col justify-center text-justify p-4">
                     <p className="pl-4 pr-4 text-l text-gray-600 dark:text-gray-400"> {description} </p>
                 </div>
-                <div className="p-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 ">
+                <div className="p-10 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-6 ">
                     <div
                         className="cursor-pointer relative group mb-8 max-w-full p-6 bg-white border border-yellow-200 rounded-lg shadow  dark:bg-gray-800 dark:border-yellow-700 hover:shadow-yellow-500"
                     >
@@ -236,22 +207,105 @@ export default function DonorCampaignDetail() {
                             {parseFloat(goalAmount).toLocaleString()} VNĐ
                         </p>
                     </div>
-                    <Link to={`/auth/donorCampaign/create/${id}/${locations[0].id}`} className=" relative group mb-8 max-w-full  p-10 cursor-pointer text-4xl font-medium text-center text-white rounded-lg bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
-                        ĐÓNG GÓP</Link>
+                    <div
+                        className="cursor-pointer relative group mb-8 max-w-full p-6 bg-white border border-green-200 rounded-lg shadow  dark:bg-gray-800 dark:border-green-700 hover:shadow-green-500"
+                    >
+                        <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
+                            SỐ TIỀN HIỆN CÓ
+                        </h2>
+                        <p className="text-3xl text-green-500 ">
+                            {parseFloat(currentAmount).toLocaleString()} VNĐ
+                        </p>
+                    </div>
+                    <div
+                        className="cursor-pointer relative group mb-8 max-w-full p-6 bg-white border border-blue-200 rounded-lg shadow  dark:bg-gray-800 dark:border-blue-700 hover:shadow-blue-500"
+                    >
+                        <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
+                            SỐ TIỀN CẦN THÊM
+                        </h2>
+                        <p className="text-3xl text-blue-500 ">
+                            {parseFloat(goalAmount - currentAmount).toLocaleString()} VNĐ
+                        </p>
+                    </div>
+
                 </div>
                 <h2 className="p-4 text-xl font-bold text-gray-700 dark:text-white">
                     Khu vực ảnh hưởng:</h2>
-                <div className="p-10 text-l flex flex-row ">
-                    <div className="flex-col">
-                        <p className=" text-gray-600 dark:text-gray-400"> Tỉnh: <span className="text-white font-bold">{locations[0].province}</span></p>
-                        <p className=" text-gray-600 dark:text-gray-400"> Thành phố: <span className="text-white font-bold">{locations[0].city}</span></p>
-                        <p className=" text-gray-600 dark:text-gray-400"> Quận: <span className="text-white font-bold">{locations[0].district}</span></p>
-                        <p className=" text-gray-600 dark:text-gray-400"> Phường: <span className="text-white font-bold">{locations[0].ward}</span></p>
-                        <p className=" text-gray-600 dark:text-gray-400"> MỨC THIỆT HẠI: <span className="text-orange-500 font-bold">{locations[0].damageLevel}</span></p>
+
+                {locations.map((location, index) => (
+                    <div key={index} className="p-2">
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 bg-white border border-white-200 rounded-lg shadow  dark:bg-gray-800 dark:border-white-700 hover:shadow-white-500">
+                            <div
+                                className="relative group mb-8 max-w-full p-6 "
+                            >
+                                <p className=" text-gray-600 dark:text-gray-400"> Tỉnh: <span className="text-white font-bold">{location.province}</span></p>
+                                <p className=" text-gray-600 dark:text-gray-400"> Thành phố: <span className="text-white font-bold">{location.city}</span></p>
+                                <p className=" text-gray-600 dark:text-gray-400"> Quận: <span className="text-white font-bold">{location.district}</span></p>
+                                <p className=" text-gray-600 dark:text-gray-400"> Phường: <span className="text-white font-bold">{location.ward}</span></p>
+                                <p className=" text-gray-600 dark:text-gray-400"> MỨC THIỆT HẠI: <span className="text-orange-500 font-bold">{location.damageLevel}</span></p>
+                            </div>
+                            <div
+                                className="relative group mb-8 mt-8 max-w-full p-6 bg-white border border-yellow-200 rounded-lg shadow  dark:bg-gray-800 dark:border-yellow-700 hover:shadow-yellow-500"
+                            >
+                                <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
+                                    SỐ TIỀN KÊU GỌI
+                                </h2>
+                                <p className="text-3xl text-orange-500 ">
+                                    {parseFloat(location.goalAmount).toLocaleString()} VNĐ
+                                </p>
+                            </div>
+                            <div
+                                className="relative group mb-8 mt-8 max-w-full p-6 bg-white border border-green-200 rounded-lg shadow  dark:bg-gray-800 dark:border-green-700 hover:shadow-green-500"
+                            >
+                                <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
+                                    SỐ TIỀN HIỆN CÓ
+                                </h2>
+                                <p className="text-3xl text-green-500 ">
+                                    {parseFloat(location.currentAmount).toLocaleString()} VNĐ
+                                </p>
+                            </div>
+                            <div
+                                className="relative group mb-8 mt-8 max-w-full p-6 bg-white border border-blue-200 rounded-lg shadow  dark:bg-gray-800 dark:border-blue-700 hover:shadow-blue-500"
+                            >
+                                <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
+                                    SỐ TIỀN CẦN THÊM
+                                </h2>
+                                <p className="text-3xl text-blue-500 ">
+                                    {parseFloat(Number(location.goalAmount) - Number(location.currentAmount)).toLocaleString()} VNĐ
+                                </p>
+                            </div>
+                        </div>
                     </div>
-                    {/* <div id="map" style={{ paddingLeft: "100px", textAlign: "center", width: "80%", height: "500px" }}></div> */}
+                ))}
+
+                <div className="m-6 p-5 bg-white border border-blue-200 rounded-l ">
+                    <label htmlFor="locationDonate" className="pt-2 block mb-1 text-sm  text-black">
+                        Chọn khu vực để đóng góp:
+                    </label>
+                    <select
+                        required
+                        value={idLocate}
+                        onChange={(e) => {
+                            setIdLocate(e.target.value);
+                        }}
+                        id="locationDonate"
+                        className="block w-full px-4 pb-2 mt-1 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
+                        aria-label="Chọn khu vực để đóng góp"
+                    >
+                        <option value="">
+                            --Chọn--
+                        </option>
+                        {locations.map((location, index) => (
+                            <option key={index} value={location.id}>
+                                {location.province}, {location.city}, {location.district}, {location.ward}
+                            </option>
+                        ))}
+                    </select>
+                    {idLocate !== "" && <Link to={`/auth/donorCampaign/create/${id}/${idLocate}`} className="block w-full mt-10 p-5 cursor-pointer text-4xl font-medium text-center text-white rounded-lg bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
+                        ĐÓNG GÓP</Link>}
+
                 </div>
-                <hr />
+
 
                 <h2 className="p-4 text-xl font-bold text-gray-700 dark:text-white">
                     Gửi Bình luận:</h2>
@@ -304,10 +358,10 @@ export default function DonorCampaignDetail() {
                 <hr />
 
                 <h2 className="p-4 text-xl font-bold text-gray-700 dark:text-white">
-                    Các Bình luận:</h2>
+                    Các Bình luận: ( Tổng đánh giá: <span className="text-orange-500 font-bold">{totalRating}</span> )</h2>
                 <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-1 gap-1 p-4">
                     {feedbacks?.map((item) => (
-                        <div className="mb-1">
+                        <div key={item.id} className="mb-1">
                             <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
                                 {item.title}
                             </h2>

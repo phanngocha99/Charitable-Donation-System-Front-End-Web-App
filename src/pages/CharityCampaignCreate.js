@@ -12,6 +12,7 @@ export default function CharityCampaignsCreate() {
     const navigate = useNavigate();
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
+    const [url, setURL] = useState('');
     const [goalAmount, setGoalAmount] = useState('');
     const [startDate, setStartDate] = useState('');
     const [endDate, setEndDate] = useState('');
@@ -31,7 +32,7 @@ export default function CharityCampaignsCreate() {
     );
     const [msg, setMsg] = useState('');
     const [err, setErr] = useState('');
-    const campaignInformation = { title, description, goalAmount, startDate, endDate, locations };
+    const campaignInformation = { title, description, url, goalAmount, startDate, endDate, locations };
     console.log('campaignInformation', campaignInformation);
     console.log('locations', locations);
 
@@ -43,7 +44,6 @@ export default function CharityCampaignsCreate() {
         if (validInput(campaignInformation)) {
             setMsg("");
             console.log("All fields are filled!");
-            console.log('campaignInformation', campaignInformation);
             console.log('locations', locations);
 
             registerApi(campaignInformation);
@@ -52,15 +52,42 @@ export default function CharityCampaignsCreate() {
         }
     };
 
+    function HandleAmount(index, value) {
+        // Create a copy of the current locations array
+        const updatedLocations = [...locations];
+
+        // Update the specific location with the new value
+        updatedLocations[index] = {
+            ...updatedLocations[index],
+            goalAmount: value,
+        };
+
+        // Calculate the sum using the updated array
+        let sum = 0;
+        for (let i = 0; i < updatedLocations.length; i++) {
+            let money = parseInt(updatedLocations[i].goalAmount, 10); // Parse as integer
+            console.log("money", money);
+            if (isNaN(money)) {
+                money = 0; // Default to 0 if parsing fails
+            }
+            sum += money;
+        }
+
+        // Update both the locations and the total goal amount in state
+        setLocations(updatedLocations); // Update the state with the modified locations
+        setGoalAmount(sum); // Update the total goal amount
+    }
+
     function validInput(campaignInformation) {
-        const { title, description, goalAmount, startDate, endDate, locations } = campaignInformation;
+        const { title, description, url, goalAmount, startDate, endDate, locations } = campaignInformation;
         if (
             !title ||
             !description ||
             !goalAmount ||
             !startDate ||
             !endDate ||
-            !locations
+            !locations ||
+            !url
         ) {
             setMsg('fieldEmpty');
             return false;
@@ -77,10 +104,19 @@ export default function CharityCampaignsCreate() {
 
             return true
         };
+        if (locations[0].goalAmount > goalAmount) {
+            setMsg("Goal amount must be less than total goal amount");
+            return false;
+        }
         return true; // All fields are valid (not empty)
     }
 
     async function registerApi(campaignInformation) {
+        console.log('context.auth.user.role', context.auth.user.role);
+        if (context.auth.user.role == "admin") {
+            campaignInformation = { ...campaignInformation, charityOrgId: 6 };
+        }
+        console.log('campaignInformation', campaignInformation);
         try {
             const response = await fetch(`http://localhost:5000/campaigns/create`, {
                 method: "POST",
@@ -107,7 +143,6 @@ export default function CharityCampaignsCreate() {
             setErr(error.message);
         }
     }
-
 
     return (
         <div>
@@ -140,39 +175,50 @@ export default function CharityCampaignsCreate() {
                                 </div>
                                 : ""
                             }
+                            {msg === "Goal amount must be less than total goal amount"
+                                ? <div className="bg-red-100 border border-red-400 text-red-700 px-4 pb-3 rounded relative" role="alert">
+                                    <strong className="font-bold">Không thành công! </strong>
+                                    <span className="block sm:inline"> Số tiền của khu vực không được lớn hơn tổng số tiền của chiến dịch: {err}</span>
+                                </div>
+                                : ""
+                            }
                             <div className="mt-2">
                                 <form>
                                     <div>
                                         <label htmlFor="firstName" className="pt-2 block mb-1 text-sm text-gray-600 dark:text-gray-200">Tên chiến dịch:</label>
                                         <input required value={title}
-                                            onChange={(e) => setTitle(e.target.value)} autoComplete="current-password"
+                                            onChange={(e) => setTitle(e.target.value)}
                                             type="text" name="title" id="title" placeholder="Bão Yagi" className="block w-full px-4 pb-2 mt-1 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
                                     </div>
                                     <div>
                                         <label htmlFor="description" className="pt-2  block mb-1 text-sm text-gray-600 dark:text-gray-200">Thông tin chi tiết:</label>
                                         <textarea required value={description}
-                                            onChange={(e) => setDescription(e.target.value)} autoComplete="current-password"
+                                            onChange={(e) => setDescription(e.target.value)}
                                             type="text" name="description" id="description" placeholder="Chi tiết" className="block w-full px-4 pb-2 mt-1 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
                                     </div>
                                     <div>
+                                        <label htmlFor="url" className="pt-2  block mb-1 text-sm text-gray-600 dark:text-gray-200">URL Hình Ảnh:</label>
+                                        <textarea required value={url}
+                                            onChange={(e) => setURL(e.target.value)}
+                                            type="text" name="url" id="url" placeholder="URL hình ảnh" className="block w-full px-4 pb-2 mt-1 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
+                                    </div>
+                                    <div>
                                         <label htmlFor="goalAmount" className="pt-2 block mb-1 text-sm text-gray-600 dark:text-gray-200">Số tiền kêu gọi:</label>
-                                        <input required value={goalAmount}
-                                            onChange={(e) => setGoalAmount(e.target.value)} autoComplete="current-password"
-                                            type="number" name="goalAmount" id="goalAmount" placeholder="100000000" className="block w-full px-4 pb-2 mt-1 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40 dark:[color-scheme:dark]" />
+                                        <p className="block w-full px-4 pb-2 mt-1 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40 dark:[color-scheme:dark]">Tự động điền từ cố tiền kêu gọi của các khu vực <span className="font-bold">{goalAmount}</span> </p>
                                     </div>
                                     <div>
                                         <label htmlFor="startDate" className="pt-2 block mb-1 text-sm text-gray-600 dark:text-gray-200">Ngày bắt đầu:</label>
                                         <input required value={startDate}
-                                            onChange={(e) => setStartDate(e.target.value)} autoComplete="current-password"
+                                            onChange={(e) => setStartDate(e.target.value)}
                                             type="date" name="startDate" id="startDate" className="block w-full px-4 pb-2 mt-1 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
                                     </div>
                                     <div>
                                         <label htmlFor="endDate" className="pt-2 block mb-1 text-sm text-gray-600 dark:text-gray-200">Ngày kết thúc:</label>
                                         <input required value={endDate}
-                                            onChange={(e) => setEndDate(e.target.value)} autoComplete="current-password"
+                                            onChange={(e) => setEndDate(e.target.value)}
                                             type="date" name="endDate" id="endDate" className="block w-full px-4 pb-2 mt-1 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
                                     </div>
-                                    <h2 className="pt-2 text-l font-bold text-center text-gray-700 dark:text-white"> Khu vực:</h2>
+                                    <h2 className="pt-2 text-l font-bold text-center text-gray-700 dark:text-white"> Khu vực mặc định:</h2>
                                     <div>
                                         <label htmlFor="name" className="pt-2 block mb-1 text-sm text-gray-600 dark:text-gray-200">Tên khu vực:</label>
                                         <input required value={locations[0]?.name || ""}
@@ -180,7 +226,7 @@ export default function CharityCampaignsCreate() {
                                                 const updatedLocations = [...locations];
                                                 updatedLocations[0] = { ...updatedLocations[0], name: e.target.value };
                                                 setLocations(updatedLocations);
-                                            }} autoComplete="current-password"
+                                            }}
                                             type="text" name="name" id="name" placeholder="Hưng Yên" className="block w-full px-4 pb-2 mt-1 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
                                     </div>
                                     <div>
@@ -193,7 +239,7 @@ export default function CharityCampaignsCreate() {
                                                 updatedLocations[0] = { ...updatedLocations[0], latitude: e.target.value };
                                                 setLocations(updatedLocations);
                                             }}
-                                            autoComplete="current-password"
+
                                             type="text" name="latitude" id="latitude" placeholder="19.25" className="block w-full px-4 pb-2 mt-1 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
                                     </div>
                                     <div>
@@ -203,7 +249,7 @@ export default function CharityCampaignsCreate() {
                                                 const updatedLocations = [...locations];
                                                 updatedLocations[0] = { ...updatedLocations[0], longitude: e.target.value };
                                                 setLocations(updatedLocations);
-                                            }} autoComplete="current-password"
+                                            }}
                                             type="text" name="longitude" id="longitude" placeholder="25.19" className="block w-full px-4 pb-2 mt-1 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
                                     </div>
                                     <div>
@@ -239,7 +285,7 @@ export default function CharityCampaignsCreate() {
                                                 const updatedLocations = [...locations];
                                                 updatedLocations[0] = { ...updatedLocations[0], ward: e.target.value };
                                                 setLocations(updatedLocations);
-                                            }} autoComplete="current-password"
+                                            }}
                                             type="text" name="ward" id="ward" placeholder="Phường 1" className="block w-full px-4 pb-2 mt-1 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
                                     </div>
                                     <div>
@@ -249,7 +295,7 @@ export default function CharityCampaignsCreate() {
                                                 const updatedLocations = [...locations];
                                                 updatedLocations[0] = { ...updatedLocations[0], district: e.target.value };
                                                 setLocations(updatedLocations);
-                                            }} autoComplete="current-password"
+                                            }}
                                             type="text" name="district" id="district" placeholder="Quận 10" className="block w-full px-4 pb-2 mt-1 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
                                     </div>
                                     <div>
@@ -259,7 +305,7 @@ export default function CharityCampaignsCreate() {
                                                 const updatedLocations = [...locations];
                                                 updatedLocations[0] = { ...updatedLocations[0], province: e.target.value };
                                                 setLocations(updatedLocations);
-                                            }} autoComplete="current-password"
+                                            }}
                                             type="text" name="province" id="province" placeholder="Hưng Yên" className="block w-full px-4 pb-2 mt-1 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
                                     </div>
                                     <div>
@@ -269,17 +315,13 @@ export default function CharityCampaignsCreate() {
                                                 const updatedLocations = [...locations];
                                                 updatedLocations[0] = { ...updatedLocations[0], city: e.target.value };
                                                 setLocations(updatedLocations);
-                                            }} autoComplete="current-password"
+                                            }}
                                             type="text" name="city" id="city" placeholder="Hưng Yên" className="block w-full px-4 pb-2 mt-1 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
                                     </div>
                                     <div >
                                         <label htmlFor="goalAmount" className="pt-2  block mb-1 text-sm text-gray-600 dark:text-gray-200">Số tiền cần kêu gọi của khu vực:</label>
-                                        <input required value={goalAmount || ""}
-                                            onChange={(e) => {
-                                                const updatedLocations = [...locations];
-                                                updatedLocations[0] = { ...updatedLocations[0], goalAmount: e.target.value };
-                                                setLocations(updatedLocations);
-                                            }} autoComplete="current-password"
+                                        <input required value={locations[0]?.goalAmount || ""}
+                                            onChange={(e) => HandleAmount(0, e.target.value)}
                                             type="text" name="goalAmount" id="goalAmount" placeholder="25000000" className="block w-full px-4 pb-2 mt-1 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
                                     </div>
                                     <div className="mt-2">

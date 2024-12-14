@@ -46,7 +46,6 @@ export default function LoginPage() {
                         userInformation.token = data.accessToken;
                         context.auth.setUser(userInformation);
                         setMsg('UserLogined');
-                        saveAuthToken(data.accessToken);
                         navigate("/notAuth/verifyOtp");
                     } else {
                         console.log(data);

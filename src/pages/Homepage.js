@@ -11,20 +11,7 @@ function Homepage() {
     return (
         <section className="h-screen w-screen p-8">
             <div className="cursor-pointer grid justify-center md:grid-cols-2 lg:grid-cols-3 gap-2 lg:gap-3 my-10">
-                {/* <!-- Control approve for Tổ chức từ thiện   --> */}
-                {context.auth.user.role === "admin" && <>
-                    <Link to="/auth/verifyFromAdmin" className="bg-white rounded-lg border shadow-md max-w-xs md:max-w-none overflow-hidden hover:shadow-lg transition-shadow duration-300">
-                        <img className="h-40 w-full object-contain" src="https://media.istockphoto.com/id/948531554/vector/approved-ink-stamp.jpg?s=612x612&w=0&k=20&c=kVKJxtXo1QOxDoqTvAdxHEjuVlcRvxGN-1f6qvyimRA=" alt="" />
-                        <div className="p-3">
-                            <h3 className="font-semibold text-xl leading-6 text-gray-700 my-2">
-                                Phê duyệt Tổ chức từ thiện
-                            </h3>
-                            <p className="paragraph-normal text-gray-600">
-                                Các tài khoản đăng ký dưới vai trò tổ chức từ thiện đang đợi phê duyệt
-                            </p>
-                        </div>
-                    </Link>
-                </>}
+
                 {/* <!-- Control for Tạo vùng cần hỗ trợ   --> */}
                 {(context.auth.user.role === "charity_org" || context.auth.user.role === "admin") && (
                     <Link to="/auth/charityCampaign" className="bg-white rounded-lg border shadow-md max-w-xs md:max-w-none overflow-hidden hover:shadow-lg transition-shadow duration-300">
@@ -39,6 +26,7 @@ function Homepage() {
                         </div>
                     </Link>
                 )}
+
                 {/* Đóng góp từ thiện */}
                 <Link to="/auth/DonorCampaignList" className="bg-white rounded-lg border shadow-md max-w-xs md:max-w-none overflow-hidden hover:shadow-lg transition-shadow duration-300">
                     <img className="h-40 w-full object-cover" src="https://nyegop.org/wp-content/uploads/2019/11/Donate.jpg" alt="" />
@@ -52,6 +40,38 @@ function Homepage() {
                         </p>
                     </div>
                 </Link>
+
+                {/* <!-- Control for Tạo chi cho chiến dịch   --> */}
+                {(context.auth.user.role === "charity_org" || context.auth.user.role === "admin") && <>
+                    <Link to="/auth/ExpenseCompaignList" className="bg-white rounded-lg border shadow-md max-w-xs md:max-w-none overflow-hidden hover:shadow-lg transition-shadow duration-300">
+                        <img className="h-40 w-full object-cover" src="https://cdn4.vieclam24h.vn/wp-content/uploads/2024/08/01205937/expense-la-gi1.webp" alt="" />
+                        <div className="p-3">
+                            <h3 className="font-semibold text-xl leading-6 text-gray-700 my-2">
+                                Quản lý chi tiêu của chiến dịch cứu trợ
+                            </h3>
+                            <p className="paragraph-normal text-gray-600">
+                                Tạo chi tiêu cho chiến dịch cứu trợ
+                            </p>
+                        </div>
+                    </Link>
+                </>
+                }
+
+                {/* <!-- Control approve for Tổ chức từ thiện   --> */}
+                {context.auth.user.role === "admin" && <>
+                    <Link to="/auth/verifyFromAdmin" className="bg-white rounded-lg border shadow-md max-w-xs md:max-w-none overflow-hidden hover:shadow-lg transition-shadow duration-300">
+                        <img className="h-40 w-full object-contain" src="https://media.istockphoto.com/id/948531554/vector/approved-ink-stamp.jpg?s=612x612&w=0&k=20&c=kVKJxtXo1QOxDoqTvAdxHEjuVlcRvxGN-1f6qvyimRA=" alt="" />
+                        <div className="p-3">
+                            <h3 className="font-semibold text-xl leading-6 text-gray-700 my-2">
+                                Phê duyệt Tổ chức từ thiện
+                            </h3>
+                            <p className="paragraph-normal text-gray-600">
+                                Các tài khoản đăng ký dưới vai trò tổ chức từ thiện đang đợi phê duyệt
+                            </p>
+                        </div>
+                    </Link>
+                </>}
+
                 {/* <!-- Control approve for Đóng góp từ thiện   --> */}
                 {context.auth.user.role === "admin" && <>
                     <Link to="/auth/VerifyDonateFromAdmin" className="bg-white rounded-lg border shadow-md max-w-xs md:max-w-none overflow-hidden hover:shadow-lg transition-shadow duration-300">
@@ -66,6 +86,22 @@ function Homepage() {
                         </div>
                     </Link>
                 </>}
+
+                {/* <!-- Control for Theo dõi và báo cáo   --> */}
+                {(context.auth.user.role === "charity_org" || context.auth.user.role === "admin" || context.auth.user.role === "donor") && <>
+                    <Link to="/auth/ReportCompaignList" className="bg-white rounded-lg border shadow-md max-w-xs md:max-w-none overflow-hidden hover:shadow-lg transition-shadow duration-300">
+                        <img className="h-40 w-full object-cover" src="https://megaweb.vn/blog/uploads/images/tinh-nang-report-facebook-co-y-nghia-gi.jpeg" alt="" />
+                        <div className="p-3">
+                            <h3 className="font-semibold text-xl leading-6 text-gray-700 my-2">
+                                Theo dõi và báo cáo
+                            </h3>
+                            <p className="paragraph-normal text-gray-600">
+                                Cung cấp thông tin công khai về tổng số tiền và vật phẩm đã quyên góp, phân phối, và số dư còn lại. Hiển thị danh sách đóng góp, hỗ trợ xuất báo cáo chi tiết.
+                            </p>
+                        </div>
+                    </Link>
+                </>}
+
             </div>
         </section >
 

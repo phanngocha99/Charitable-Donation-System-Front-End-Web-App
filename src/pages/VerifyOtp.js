@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 // Import Component/Context
 import { useOutletContext } from "react-router-dom";
 import { Outlet } from "react-router-dom";
-import { getAuthToken } from "../utils/useToken";
+import { getAuthToken, saveAuthToken } from "../utils/useToken";
 
 function VerifyOtp() {
     console.log("-----> VerifyOTP rendering ")
@@ -49,6 +49,7 @@ function VerifyOtp() {
                 token: context.auth.user.token,
             });
             if (context.auth.user.token !== "") {
+                saveAuthToken(context.auth.user.token);
                 context.isLog.setIsLog(getAuthToken());
                 navigate("/auth");
             } else {
