@@ -11,6 +11,7 @@ export default function ExpenseCampaignList() {
     const [error, setError] = useState(null);
 
     useEffect(() => {
+
         fetch(`http://localhost:5000/campaigns`, {
             method: "GET",
             headers: {
