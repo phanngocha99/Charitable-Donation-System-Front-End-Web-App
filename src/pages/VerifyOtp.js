@@ -21,47 +21,16 @@ function VerifyOtp() {
     const HandleSendOTP = (event) => {
         event.preventDefault();
         setMsgPhone("inprogress");
-        // sendOtpApi(phoneNumber);
-
-        // Test: 
-        setMsgPhone("ok");
+        const phoneNumber = "0387963041"
+        sendOtpApi(phoneNumber);
 
     }
 
     const HandleVerifyOTP = (event) => {
         event.preventDefault();
         setMsgOTP("inprogress");
-        // verifyOtpApi(otp);
+        verifyOtpApi(otp);
 
-        // Test: 
-        setMsgOTP("ok");
-        setTimeout(() => {
-            context.auth.setUser({
-                id: context.auth.user.id,
-                firstName: context.auth.user.firstName,
-                lastName: context.auth.user.lastName,
-                phoneNumber: context.auth.user.phoneNumber,
-                email: context.auth.user.email,
-                password: context.auth.user.password,
-                role: context.auth.user.role,
-                isVerified: true,
-                birthDate: context.auth.user.birthDate,
-                token: context.auth.user.token,
-            });
-            if (context.auth.user.token !== "") {
-                saveAuthToken(context.auth.user.token);
-                context.isLog.setIsLog(getAuthToken());
-                navigate("/auth");
-            } else {
-                if (context.auth.user.role == "charity_org") {
-                    console.log('Auth user:', context.auth.user);
-                    console.log('Org info:', context.org.org);
-                    registerOrgApi(context.auth.user, context.org.org);
-                } else {
-                    registerApi(context.auth);
-                }
-            }
-        }, 1000);
     }
 
     function registerOrgApi(userInformation, orgInformation) {
@@ -134,7 +103,19 @@ function VerifyOtp() {
                     birthDate: context.auth.user.birthDate,
                     token: context.auth.user.token,
                 });
-                context.isLog.setIsLog(true);
+                if (context.auth.user.token !== "") {
+                    saveAuthToken(context.auth.user.token);
+                    context.isLog.setIsLog(getAuthToken());
+                    navigate("/auth");
+                } else {
+                    if (context.auth.user.role == "charity_org") {
+                        console.log('Auth user:', context.auth.user);
+                        console.log('Org info:', context.org.org);
+                        registerOrgApi(context.auth.user, context.org.org);
+                    } else {
+                        registerApi(context.auth);
+                    }
+                }
             })
             .catch((error) => {
                 console.error('Error:', error);

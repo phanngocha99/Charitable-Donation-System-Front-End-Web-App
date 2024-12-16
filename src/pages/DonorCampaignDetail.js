@@ -153,7 +153,7 @@ export default function DonorCampaignDetail() {
                         for (let i = 0; i < data.length; i++) {
                             sumRate += data[i].rating;
                         }
-                        setTotalRating((sumRate / data.length) + "/5")
+                        setTotalRating((sumRate / data.length).toFixed(1) + "/5")
                     } else {
                         setTotalRating("Chưa có đánh giá nào")
 
