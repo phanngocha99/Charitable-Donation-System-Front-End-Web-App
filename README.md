@@ -26,7 +26,7 @@ Hệ thống đóng góp từ thiện vùng thiên tai, cho phép người dùng
 
 ### Prerequisites
 
-- [Node.js](https://nodejs.org/) (>= 14.x)
+- [Node.js](https://nodejs.org/) (v20.14.0)
 
 ## Available Scripts
 
