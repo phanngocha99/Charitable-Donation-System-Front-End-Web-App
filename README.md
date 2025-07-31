@@ -12,6 +12,9 @@ Hệ thống đóng góp từ thiện vùng thiên tai, cho phép người dùng
 - Phản hồi và đánh giá từ người dùng.
 - Theo dõi và báo cáo về các khoản quyên góp.
 
+## Demo
+- Refer: https://www.youtube.com/watch?v=38vPAQc_tTY&t=27s
+
 ## Công nghệ sử dụng
 
 - Node.js
